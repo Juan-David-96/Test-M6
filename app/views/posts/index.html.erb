@@ -1,0 +1,21 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Ofertas Laborales" %>
+
+<h1>Posts</h1>
+
+<div id="posts">
+  <% @posts.each do |post| %>
+    <%= render post %>
+    <p>
+      <%= link_to "Mostrar Oferta", post, class: 'btn btn-primary' %>
+    </p>
+  <% end %>
+</div>
+
+
+  <% if current_user.esteban? %>
+    <div class="mb-2 d-flex justify-content-start">
+      <%= link_to "New post", new_post_path, class: 'btn btn-primary' %>
+    </div>
+  <% end %>

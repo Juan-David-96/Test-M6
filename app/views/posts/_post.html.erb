@@ -1,0 +1,25 @@
+<div id="<%= dom_id(post) %>" class="card mb-4">
+  <div class="card-body">
+    <h1 class="card-title"><%= post.titulo %></h1>
+
+    <p class="card-text">
+      <strong>User:</strong> <%= post.user.name %>
+    </p>
+
+    <div class="mb-3">
+      <strong>Post Image:</strong>
+      <div class="d-flex justify-content-center">
+        <% if post.image.attached? %>
+          <%= image_tag post.image, alt: "Post image", class: "img-fluid", style: "max-width: 200px;" %>
+        <% else %>
+          <p>No image available</p>
+        <% end %>
+      </div>
+    </div>
+
+    <p class="card-text">
+      <strong>Description:</strong> <%= post.descripcion %> 
+    </p>
+  </div>
+</div>
+

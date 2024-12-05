@@ -1,0 +1,36 @@
+<%= form_with(model: post) do |form| %>
+  <% if post.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+        <% post.errors.full_messages.each do |error| %>
+          <li><%= error %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <!-- Campo de Titulo -->
+  <div class="mb-3">
+    <%= form.label :titulo, "Título", class: 'form-label' %>
+    <%= form.text_field :titulo, class: 'form-control' %>
+  </div>
+  
+  <!-- Campo de imagen -->
+  <div class="mb-3">
+    <%= form.label :image, "Agrega una foto", class: 'form-label' %>
+    <%= form.file_field :image, class: 'form-control' %>
+  </div>
+
+  <!-- Campo de descripción -->
+  <div class="mb-3">
+    <%= form.label :descripcion, "Descripción", class: 'form-label' %> 
+    <%= form.text_area :descripcion, class: 'form-control' %> 
+  </div>
+
+  <!-- Botón de envío -->
+  <div>
+    <%= form.submit "Subir Oferta Laboral", class: 'btn btn-primary' %>
+  </div>
+<% end %>

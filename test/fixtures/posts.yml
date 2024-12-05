@@ -1,0 +1,20 @@
+one:
+  titulo: "First post"
+  descripcion: "This is the first post"
+  user: three
+  fecha_publicacion: <%= 1.day.ago.to_date %>
+  fecha_cierre: <%= 5.days.from_now.to_date %>
+
+two:
+  titulo: "Second post"
+  descripcion: "This is the second post"
+  user: three
+  fecha_publicacion: <%= 2.days.ago.to_date %>
+  fecha_cierre: <%= 6.days.from_now.to_date %>
+
+three:
+  titulo: "Three post"
+  descripcion: "This is the three post"
+  user: one
+  fecha_publicacion: <%= 1.day.ago.to_date %>
+  fecha_cierre: <%= 5.days.from_now.to_date %>

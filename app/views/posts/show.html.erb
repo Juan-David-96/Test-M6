@@ -1,0 +1,43 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @post %>
+
+<div>
+  <% if current_user.esteban? %>
+    <div class="mb-2 d-flex justify-content-start">
+      <%= link_to "Editar el Post", edit_post_path(@post), class: "btn btn-warning me-2" %>
+      <%= button_to "Eliminar el Post", @post, method: :delete, data: { confirm: "¿Está seguro que desea eliminar el post?" }, class: "btn btn-danger" %>
+    </div>
+  <% end %>
+</div>
+
+<%= link_to "Back to posts", posts_path, class: 'btn btn-outline-secondary' %>
+
+<h2 class="mt-4">Agregar Postulación</h2>
+<%= form_with(model: [ @post, Postulacion.new ], local: true) do |form| %>
+  <div class="mb-3">
+    <%= form.label :fecha_postulacion %>
+    <%= form.datetime_local_field :fecha_postulacion, value: Time.now, class: 'form-control' %>
+  </div>
+  <div class="mb-3">
+    <%= form.submit "Postularme", class: 'btn btn-primary' %>
+  </div>
+<% end %>
+
+
+
+
+
+
+<h2 class="mt-4">Postulaciones</h2>
+<ul class="list-group">
+  <% @post.postulacions.each do |postulacion| %>
+    <li class="list-group-item">
+      <%= postulacion.user.name %> - <%= postulacion.fecha_postulacion.strftime('%d/%m/%Y %H:%M') %>
+
+      <% if user_signed_in? && (current_user.id == postulacion.user_id || current_user.role == 'admin' || current_user.role == 'esteban') %>
+        <%= button_to "Eliminar", [postulacion.post, postulacion], method: :delete, data: { confirm: "¿Estás seguro de que deseas eliminar esta postulación?" }, class: "btn btn-danger btn-sm float-end" %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
